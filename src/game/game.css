@@ -1,0 +1,304 @@
+/* ============ 星港电波 · 游戏专用样式与动画 ============ */
+
+.game-root {
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+/* ----- 背景动画 ----- */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 1; }
+}
+.star-twinkle { animation: twinkle 4s ease-in-out infinite; }
+
+@keyframes drift {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-30px); }
+  100% { transform: translateX(0); }
+}
+.wave-drift { animation: drift 6s ease-in-out infinite; }
+
+@keyframes ringExpand {
+  0% { width: 8px; height: 8px; opacity: 0.9; transform: translate(-50%, -50%); }
+  100% { width: 220px; height: 220px; opacity: 0; transform: translate(-50%, -50%); }
+}
+.radio-ring { animation: ringExpand 4.8s ease-out infinite; }
+
+@keyframes beaconPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.beacon { animation: beaconPulse 2.4s ease-in-out infinite; }
+
+@keyframes beamRotate {
+  0% { opacity: 0.13; }
+  50% { opacity: 0.03; }
+  100% { opacity: 0.13; }
+}
+.beacon-beam { animation: beamRotate 5s ease-in-out infinite; transform-origin: 30px 24px; }
+
+@keyframes lampGlow {
+  0%, 100% { background: #ffd88a; box-shadow: 0 0 24px 8px rgba(255, 200, 110, 0.55); }
+  50% { background: #ffe9b8; box-shadow: 0 0 32px 12px rgba(255, 210, 130, 0.7); }
+}
+.lamp-glow { animation: lampGlow 3.5s ease-in-out infinite; }
+
+@keyframes winFlicker {
+  0%, 92%, 100% { opacity: 0.9; }
+  95% { opacity: 0.2; }
+}
+.window-flicker { animation: winFlicker 7s linear infinite; }
+
+@keyframes neonPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.72; }
+  52% { opacity: 0.4; }
+  54% { opacity: 0.95; }
+}
+.neon-sign { animation: neonPulse 4s ease-in-out infinite; }
+.neon-delay-1 { animation-delay: 1.3s; }
+.neon-delay-2 { animation-delay: 2.6s; }
+
+@keyframes shoot {
+  0% { transform: translate(0, 0) rotate(-32deg); opacity: 0; }
+  4% { opacity: 1; }
+  18% { transform: translate(-46vw, 24vh) rotate(-32deg); opacity: 0; }
+  100% { transform: translate(-46vw, 24vh) rotate(-32deg); opacity: 0; }
+}
+.shooting-star {
+  position: absolute;
+  top: 12%;
+  left: 78%;
+  width: 130px;
+  height: 2px;
+  background: linear-gradient(90deg, #fff, transparent);
+  border-radius: 2px;
+  animation: shoot 9s linear infinite;
+}
+.shooting-star-2 { top: 26%; left: 92%; animation-delay: 4.5s; animation-duration: 12s; }
+
+@keyframes fireworkBurst {
+  0% { transform: scale(0); opacity: 0; }
+  8% { opacity: 1; }
+  40% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+.firework { width: 0; height: 0; animation: fireworkBurst 6s ease-out infinite; }
+.firework-dot { width: 5px; height: 5px; transform-origin: 2.5px 2.5px; }
+.firework .firework-dot { animation: none; }
+.firework { transform-origin: center; }
+.firework > .firework-dot { position: absolute; left: -2.5px; top: -2.5px; }
+/* 让点向外散开：借助父级 scale 与每点 rotate+translate */
+.firework .firework-dot { transform: rotate(var(--r)) translateY(-58px) !important; }
+
+@keyframes rainFall {
+  0% { background-position: 0 -200px; }
+  100% { background-position: 60px 600px; }
+}
+.rain-layer {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(105deg, transparent 0 14px, rgba(170, 200, 255, 0.13) 14px 15px);
+  background-size: 100% 800px;
+  animation: rainFall 0.9s linear infinite;
+}
+.rain-layer-2 {
+  background: repeating-linear-gradient(98deg, transparent 0 23px, rgba(170, 200, 255, 0.08) 23px 24.5px);
+  animation-duration: 1.5s;
+}
+
+@keyframes equipBlink {
+  0%, 70%, 100% { opacity: 0.25; }
+  80%, 90% { opacity: 1; }
+}
+.equip-light { animation: equipBlink 3s linear infinite; }
+
+/* ----- 场景切换 ----- */
+@keyframes sceneIn {
+  from { opacity: 0; transform: scale(1.04); }
+  to { opacity: 1; transform: scale(1); }
+}
+.scene-enter { animation: sceneIn 0.9s ease-out both; }
+
+@keyframes spriteIn {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.sprite-enter { animation: spriteIn 0.5s ease-out both; }
+
+@keyframes spriteBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ----- 白露 glitch ----- */
+@keyframes glitchShift {
+  0%, 91%, 94%, 100% { transform: translate(0); filter: none; }
+  92% { transform: translate(-3px, 1px); filter: hue-rotate(40deg) saturate(1.6); }
+  93% { transform: translate(3px, -1px); filter: hue-rotate(-50deg); }
+}
+.sprite-glitch { animation: glitchShift 4.2s steps(1) infinite; }
+
+/* ----- 对话框 ----- */
+.textbox-glass {
+  background: linear-gradient(160deg, rgba(18, 14, 38, 0.82), rgba(30, 20, 55, 0.78));
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(160, 150, 255, 0.22);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+@keyframes caretBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.type-caret { animation: caretBlink 0.8s step-end infinite; }
+
+@keyframes toastUp {
+  0% { opacity: 0; transform: translateY(14px); }
+  12% { opacity: 1; transform: translateY(0); }
+  82% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+.toast-anim { animation: toastUp 2.6s ease-out both; }
+
+@keyframes chapterIn {
+  0% { opacity: 0; letter-spacing: 0.6em; }
+  18% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.chapter-toast { animation: chapterIn 3.2s ease-out both; }
+
+/* ----- 选择支 ----- */
+.choice-card {
+  background: linear-gradient(150deg, rgba(24, 18, 48, 0.9), rgba(38, 26, 70, 0.85));
+  border: 1px solid rgba(150, 160, 255, 0.25);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.choice-card:not(.choice-locked):hover {
+  transform: translateY(-3px) scale(1.015);
+  border-color: rgba(122, 220, 232, 0.75);
+  box-shadow: 0 10px 40px rgba(79, 216, 232, 0.22), inset 0 0 24px rgba(122, 220, 232, 0.06);
+}
+.choice-locked { opacity: 0.42; filter: grayscale(0.6); cursor: not-allowed; }
+
+@keyframes choiceIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.choice-enter { animation: choiceIn 0.4s ease-out both; }
+
+/* ----- 标题页 ----- */
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 24px rgba(122, 220, 232, 0.55), 0 0 64px rgba(255, 138, 184, 0.3); }
+  50% { text-shadow: 0 0 36px rgba(122, 220, 232, 0.85), 0 0 90px rgba(255, 138, 184, 0.5); }
+}
+.title-glow { animation: titleGlow 4s ease-in-out infinite; }
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+.breathe { animation: breathe 2.4s ease-in-out infinite; }
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float-y { animation: floatY 5s ease-in-out infinite; }
+
+.menu-btn {
+  position: relative;
+  transition: letter-spacing 0.25s ease, color 0.2s ease, transform 0.2s ease;
+}
+.menu-btn::before {
+  content: '';
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  transform: translateY(-50%) rotate(45deg);
+  background: #7adce8;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.menu-btn:hover { letter-spacing: 0.28em; color: #9ef3ff; transform: translateX(6px); }
+.menu-btn:hover::before { opacity: 1; }
+
+/* ----- 噪点与晕影 ----- */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.vignette::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: radial-gradient(ellipse at center, transparent 58%, rgba(5, 3, 18, 0.42));
+}
+
+/* ----- HUD ----- */
+.hud-btn {
+  transition: color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+}
+.hud-btn:hover { color: #9ef3ff; transform: translateY(-1px); background: rgba(122, 220, 232, 0.12); }
+.hud-btn.hud-active { color: #ffd86b; background: rgba(255, 216, 107, 0.12); }
+
+/* ----- 滚动条 ----- */
+.nice-scroll::-webkit-scrollbar { width: 6px; }
+.nice-scroll::-webkit-scrollbar-track { background: transparent; }
+.nice-scroll::-webkit-scrollbar-thumb { background: rgba(150, 160, 255, 0.3); border-radius: 3px; }
+
+/* ----- 面板 ----- */
+.panel-glass {
+  background: linear-gradient(155deg, rgba(16, 12, 34, 0.96), rgba(30, 20, 58, 0.94));
+  border: 1px solid rgba(150, 160, 255, 0.22);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.panel-enter { animation: panelIn 0.28s ease-out both; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-enter { animation: fadeIn 0.5s ease-out both; }
+.fade-enter-fast { animation: fadeIn 0.22s ease-out both; }
+
+/* ----- 结局页 ----- */
+@keyframes endingTitleIn {
+  0% { opacity: 0; letter-spacing: 1em; filter: blur(6px); }
+  100% { opacity: 1; letter-spacing: 0.18em; filter: blur(0); }
+}
+.ending-title { animation: endingTitleIn 1.6s ease-out both; }
+
+@keyframes galleryShine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.ending-card-unlocked {
+  position: relative;
+  overflow: hidden;
+}
+.ending-card-unlocked::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,0.07) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: galleryShine 4s linear infinite;
+  pointer-events: none;
+}
