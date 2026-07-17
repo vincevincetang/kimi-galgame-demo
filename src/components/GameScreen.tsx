@@ -173,13 +173,13 @@ export default function GameScreen({
           return (
             <div
               key={c.char}
-              className={`sprite-enter absolute bottom-0 h-[68vh] w-[52vw] max-w-[430px] min-w-[240px] overflow-hidden transition-all duration-500 md:w-[30vw] ${
+              className={`sprite-enter absolute bottom-0 h-[76vh] w-[56vw] max-w-[480px] min-w-[260px] transition-all duration-500 md:w-[34vw] ${
                 POS_STYLE[c.pos]
               } ${c.char === 'bailu' ? 'sprite-glitch' : ''}`}
               style={{
                 zIndex: isSpeaking ? 12 : 10,
                 filter: dim ? 'brightness(0.5) saturate(0.75)' : 'brightness(1)',
-                transform: c.pos === 'center' ? 'translateX(-50%)' : undefined,
+                transform: c.pos === 'center' ? 'translateX(-35%)' : undefined,
               }}
             >
               <div className={isSpeaking ? 'h-full w-full' : 'h-full w-full'} style={{ animation: isSpeaking ? 'spriteBob 3.2s ease-in-out infinite' : undefined }}>
