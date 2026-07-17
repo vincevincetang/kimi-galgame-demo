@@ -51,13 +51,13 @@ const SPRITES: Record<CharId, Record<Expr, string>> = {
 
 export default function Sprite({ char, expr }: { char: CharId; expr: Expr }) {
   return (
-    <div className="h-full w-full overflow-hidden drop-shadow-[0_10px_36px_rgba(0,0,0,0.5)]">
+    <div className="h-full w-full">
       <img
         key={expr}
         src={SPRITES[char][expr] ?? SPRITES[char].neutral}
         alt={char}
         draggable={false}
-        className="fade-enter-fast mx-auto block h-[200%] w-auto max-w-none"
+        className="fade-enter-fast mx-auto block h-[154%] w-auto max-w-none"
       />
     </div>
   )
