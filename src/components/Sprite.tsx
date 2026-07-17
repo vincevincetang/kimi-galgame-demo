@@ -57,7 +57,7 @@ export default function Sprite({ char, expr }: { char: CharId; expr: Expr }) {
         src={SPRITES[char][expr] ?? SPRITES[char].neutral}
         alt={char}
         draggable={false}
-        className="fade-enter-fast mx-auto block h-[167%] w-auto max-w-none"
+        className="fade-enter-fast mx-auto block h-[200%] w-auto max-w-none"
       />
     </div>
   )
