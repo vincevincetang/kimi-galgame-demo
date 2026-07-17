@@ -15,7 +15,7 @@ export function optAvailable(opt: ChoiceOpt, s: GameState): boolean {
 
 export default function ChoiceMenu({ options, state, onChoose }: Props) {
   return (
-    <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-4 bg-black/45 px-6 backdrop-blur-[2px]">
+    <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-3 bg-black/45 px-4 backdrop-blur-[2px] md:gap-4 md:px-6">
       {options.map((opt, i) => {
         const ok = optAvailable(opt, state)
         return (
@@ -24,16 +24,16 @@ export default function ChoiceMenu({ options, state, onChoose }: Props) {
             disabled={!ok}
             onClick={() => ok && onChoose(opt)}
             onMouseEnter={() => ok && audio.ui('hover')}
-            className={`choice-card choice-enter w-full max-w-xl rounded-2xl px-8 py-4 text-left md:py-5 ${
+            className={`choice-card choice-enter w-full max-w-xl rounded-xl px-5 py-3 text-left md:rounded-2xl md:px-8 md:py-5 ${
               ok ? '' : 'choice-locked'
             }`}
             style={{ animationDelay: `${i * 0.12}s` }}
           >
-            <div className="flex items-center gap-3">
-              <span className={`text-lg md:text-xl ${ok ? 'text-[#f0eeff]' : 'text-[#8a8aa8]'}`}>
+            <div className="flex items-center gap-2 md:gap-3">
+              <span className={`text-sm md:text-xl ${ok ? 'text-[#f0eeff]' : 'text-[#8a8aa8]'}`}>
                 {opt.text}
               </span>
-              {!ok && <span className="text-xs tracking-widest text-[#8a8aa8]">◇ 未满足条件</span>}
+              {!ok && <span className="text-[10px] tracking-widest text-[#8a8aa8] md:text-xs">◇ 未满足条件</span>}
             </div>
             {opt.sub && (
               <div className="mt-1 text-xs tracking-wide text-[#9aa0c8] md:text-sm">{opt.sub}</div>
