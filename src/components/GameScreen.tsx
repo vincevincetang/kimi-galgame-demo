@@ -44,6 +44,7 @@ export default function GameScreen({
   const [skip, setSkip] = useState(false)
   const [chapterToast, setChapterToast] = useState<string | null>(null)
   const [affToast, setAffToast] = useState<string | null>(null)
+  const [fs, setFs] = useState(!!document.fullscreenElement)
   const prevChapter = useRef(state.chapter)
   const prevAffN = useRef(state.affFxN)
   const prevBg = useRef(state.bg)
@@ -139,6 +140,21 @@ export default function GameScreen({
     return () => window.removeEventListener('keydown', h)
   }, [advanceOrComplete])
 
+  // 全屏
+  useEffect(() => {
+    const onFs = () => setFs(!!document.fullscreenElement)
+    document.addEventListener('fullscreenchange', onFs)
+    return () => document.removeEventListener('fullscreenchange', onFs)
+  }, [])
+
+  const toggleFs = useCallback(() => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen()
+    } else {
+      document.documentElement.requestFullscreen()
+    }
+  }, [])
+
   const speaking = isSay && pending.who !== 'narrator' && pending.who !== 'player' ? pending.who : null
   const bgChanged = state.bg !== prevBg.current
   if (bgChanged) prevBg.current = state.bg
@@ -203,6 +219,7 @@ export default function GameScreen({
           {hudBtn('跳过', () => { setSkip(!skip); setAuto(false) }, skip, !isSay && !skip)}
           {hudBtn('设置', () => setPanel('config'))}
           {hudBtn('标题', onQuit)}
+          {hudBtn(fs ? '🔲' : '⛶', toggleFs)}
         </div>
       </div>
 
