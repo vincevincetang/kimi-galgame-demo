@@ -91,7 +91,12 @@ export default function TitleScreen({ config, onConfigChange, onStart, onContinu
 
         {/* 底部 */}
         <div className="absolute bottom-5 flex w-full items-center justify-between px-6 text-[10px] tracking-[0.3em] text-[#55557a]">
-          <span>ver 1.1 · DEMO · 立绘素材 OpenGameArt(CC0)</span>
+          <button
+            onClick={() => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()}
+            className="hover:text-[#7adce8] transition-colors"
+          >
+            ⛶ 全屏
+          </button>
           <span className="breathe text-[#7adce8]/70">建议使用键盘 空格 / 回车 游玩</span>
           <span>结局收集 {unlocked.length}/{ENDINGS.length}</span>
         </div>
