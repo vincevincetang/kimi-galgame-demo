@@ -179,7 +179,7 @@ export default function GameScreen({
               style={{
                 zIndex: isSpeaking ? 12 : 10,
                 filter: dim ? 'brightness(0.5) saturate(0.75)' : 'brightness(1)',
-                transform: c.pos === 'center' ? 'translateX(-35%)' : undefined,
+                transform: c.pos === 'center' ? 'translateX(15%)' : undefined,
               }}
             >
               <div className={isSpeaking ? 'h-full w-full' : 'h-full w-full'} style={{ animation: isSpeaking ? 'spriteBob 3.2s ease-in-out infinite' : undefined }}>
