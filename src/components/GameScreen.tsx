@@ -173,7 +173,7 @@ export default function GameScreen({
           return (
             <div
               key={c.char}
-              className={`sprite-enter absolute bottom-0 h-[68vh] w-[52vw] max-w-[430px] min-w-[240px] transition-all duration-500 md:w-[30vw] ${
+              className={`sprite-enter absolute bottom-0 h-[68vh] w-[52vw] max-w-[430px] min-w-[240px] overflow-hidden transition-all duration-500 md:w-[30vw] ${
                 POS_STYLE[c.pos]
               } ${c.char === 'bailu' ? 'sprite-glitch' : ''}`}
               style={{
